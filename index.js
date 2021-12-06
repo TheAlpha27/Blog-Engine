@@ -1,3 +1,4 @@
+//Code to toggle editor and viewer modes
 var editor = true;
 let editorExc = document.getElementsByClassName("editorExc");
 function handleEditor() {
@@ -19,6 +20,7 @@ function handleEditor() {
     }
 }
 
+//Checking the local storage for blogs if available
 if (localStorage.getItem("blogs") == null) {
     blogsArr = [];
 }
@@ -26,6 +28,8 @@ else {
     blogsArr = JSON.parse(localStorage.getItem("blogs"));
 }
 // console.log("blogArr length", blogsArr.length);
+
+//Function to load all the blogs fetched from local storage
 function blogLoader() {
     let blogsContainer = document.getElementById("blogContainer");
     let html = "";
@@ -63,6 +67,7 @@ function blogLoader() {
 
 }
 
+//Code to handle the Add blog post functions
 function showAddBlog() {
     document.getElementById("addBlog").style.display = "block";
 }
@@ -111,9 +116,9 @@ function handleAddBlogClose() {
     document.getElementById("addBlog").style.display = "none";
 }
 
+//Code to handle the blog page which opens by clicking on Read More
 let elem = document.getElementById("blog");
 elem.style.display = "none";
-
 function handleOpen(e) {
     elem.style.display = "flex";
     let blogElem = blogsArr.filter(function (el) {
@@ -158,6 +163,8 @@ else {
 function handleClose() {
     elem.style.display = "none";
 }
+
+//Function to delete a blog
 function handleDelete(e) {
     let newBlogsArr = blogsArr.filter(function (el) {
         return el.id !== e;
@@ -170,6 +177,7 @@ function handleDelete(e) {
     blogLoader();
 }
 
+//Code to update the  blog
 let elemUpdate = document.getElementById("updateBlog");
 function handleUpdateOpen(e) {
     handleClose();
