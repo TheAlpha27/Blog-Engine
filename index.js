@@ -30,10 +30,11 @@ function blogLoader() {
     let blogsContainer = document.getElementById("blogContainer");
     let html = "";
     if (blogsArr.length === 0) {
-        blogsContainer.innerHTML = `<h3>No blogs to show. Please Create a blog post.</h3>`;
+        blogsContainer.innerHTML = `<h3>No blogs to show. Please Create a blog post. <h4>If you are not able to see "Create a blog post" Option, please switch to editor mode using the button in the top right corner.</h4></h3>`;
     }
     else {
         blogsArr.forEach(function (elem, index) {
+            elem.id = index;
             html += `<div class="BlogCard">
             <div id="${index}" class="BlogImgContainer">
                 <img src= ${elem.image}
@@ -84,7 +85,7 @@ function handleAddBlog() {
             author: Author.value,
             image: image.value
         }
-        console.log(newBlog);
+        // console.log(newBlog);
         title.value = "";
         Description.value = "";
         Author.value = "";
@@ -128,7 +129,7 @@ function handleOpen(e) {
             </h1>
             <div class="icons">
                 <div class="editorExc show-class">
-                    <i class="fas fa-edit "></i>
+                    <i class="fas fa-edit " onclick={handleUpdateOpen(${e})}></i>
                 </div>
                 <div class="editorExc show-class">
                     <i class="fas fa-trash " onclick={handleDelete(${e})}></i>
@@ -155,4 +156,66 @@ function handleDelete(e) {
     localStorage.setItem("blogs", JSON.stringify(blogsArr));
     handleClose();
     blogLoader();
+}
+
+let elemUpdate = document.getElementById("updateBlog");
+function handleUpdateOpen(e) {
+    handleClose();
+    elemUpdate.style.display = "block";
+    let blogTarget = blogsArr.filter(function (el) {
+        return el.id === e;
+    });
+    // console.log("update", blogTarget);
+    title = blogTarget[0].title;
+    Description = blogTarget[0].Description;
+    author = blogTarget[0].author;
+    id = blogTarget[0].id;
+    image = blogTarget[0].image;
+    // console.log("Details before: ", author, title, Description, image);
+    elemUpdate.innerHTML = ` 
+            <div id="error">
+
+            </div>
+            
+            <div class="mb-3">
+                <label for="myAuthorEdited" class="form-label">Author</label>
+                <input type="text" value="${author}" class="form-control" id="myAuthorEdited">
+            </div>
+            <div class="mb-3">
+                <label for="mytitleEdited" class="form-label">Ttile</label>
+                <input type="text" value="${title}" class="form-control" id="mytitleEdited">
+            </div>
+            <div class="mb-3">
+            <label for="myDescriptionEdited">Description</label>
+                <textarea class="form-control" id="myDescriptionEdited" style="height: 100px">${Description}</textarea>
+            <div class="mb-3">
+                <label for="myImgEdited" class="form-label">Image URL</label>
+                <input type="text" value="${image}" class="form-control" id="myImgEdited">
+            </div>
+            <button class="btn btn-primary" onclick="{handleUpdateBlog(${e})}"> Update </button>
+            <button class="btn btn-dark mx-3" onclick={handleUpdateClose()}>Close</button>`
+}
+function handleUpdateClose() {
+    elemUpdate.style.display = "none";
+}
+function handleUpdateBlog(e){
+    updatedTitle = document.getElementById("mytitleEdited").value;
+    updatedAuthor = document.getElementById("myAuthorEdited").value;
+    updatedDescription = document.getElementById("myDescriptionEdited").value;
+    updatedImage = document.getElementById("myImgEdited").value;
+    // console.log("blogsArr", blogsArr);
+    // console.log("Details After: ", updatedAuthor, updatedTitle, updatedDescription, updatedImage);
+    blogsArr.forEach(element => {
+        if(element.id === e){
+            element.title = updatedTitle;
+            element.author = updatedAuthor;
+            element.image = updatedImage;
+            element.Description = updatedDescription;
+        }
+    });
+    // console.log("blogsArr after update", blogsArr);
+    localStorage.setItem("blogs", JSON.stringify(blogsArr));
+    handleOpen(e);
+    blogLoader();
+    handleUpdateClose();
 }

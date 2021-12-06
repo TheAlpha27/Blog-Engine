@@ -85,7 +85,7 @@
     width: 9rem;
 }
 
-.addBlog{
+.addBlog, .updateBlog {
     position: fixed;
     height: 90vh;
     border: 2px solid black;
@@ -95,6 +95,9 @@
     top: 0;
     z-index: 11;
     display: none;
+}
+.updateBlog{
+    z-index: 12;
 }
 
 .blogContainer{
@@ -250,4 +253,7 @@
 }
 .hidden-class{
     display: none;
+}
+i{
+    cursor: pointer;
 }
