@@ -142,6 +142,18 @@ function handleOpen(e) {
     ${blogElem[0].Description}
     </div>
 </div>`
+if (editor === false) {
+    Array.from(editorExc).forEach(function (e) {
+        e.classList.remove("show-class");
+        e.classList.add("hidden-class");
+    })
+}
+else {
+    Array.from(editorExc).forEach(function (e) {
+        e.classList.remove("hidden-class");
+        e.classList.add("show-class");
+    })
+}
 }
 function handleClose() {
     elem.style.display = "none";
