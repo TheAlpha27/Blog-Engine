@@ -25,7 +25,7 @@ That's it.
 2. In the top right corner, click on the delete/trash icon.
 That's it.
 ## Dummy Data for testing
-Author: XYZ
-Title: My Blog
-Description: A blog (a truncation of "weblog") is a discussion or informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order, so that the most recent post appears first, at the top of the web page. Until 2009, blogs were usually the work of a single individual, occasionally of a small group, and often covered a single subject or topic.
-Image URL: https://indianlawwatch.com/wp-content/uploads/2020/05/BLOG.jpg
+1. Author: XYZ
+2. Title: My Blog
+3. Description: A blog (a truncation of "weblog") is a discussion or informational website published on the World Wide Web consisting of discrete, often informal diary-style text entries (posts). Posts are typically displayed in reverse chronological order, so that the most recent post appears first, at the top of the web page. Until 2009, blogs were usually the work of a single individual, occasionally of a small group, and often covered a single subject or topic.
+4. Image URL: https://indianlawwatch.com/wp-content/uploads/2020/05/BLOG.jpg
