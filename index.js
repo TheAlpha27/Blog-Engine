@@ -1,4 +1,5 @@
 //Code to toggle editor and viewer modes
+let editorBTN = document.getElementById("editor");
 var editor = true;
 let editorExc = document.getElementsByClassName("editorExc");
 function handleEditor() {
@@ -69,6 +70,7 @@ function blogLoader() {
 
 //Code to handle the Add blog post functions
 function showAddBlog() {
+    editorBTN.style.pointerEvents = "none";
     document.getElementById("addBlog").style.display = "block";
 }
 function handleAddBlog() {
@@ -114,6 +116,7 @@ function handleAddBlogClose() {
     Author.value = "";
     image.value = "";
     document.getElementById("addBlog").style.display = "none";
+    editorBTN.style.pointerEvents = "auto";
 }
 
 //Code to handle the blog page which opens by clicking on Read More
@@ -180,6 +183,7 @@ function handleDelete(e) {
 //Code to update the  blog
 let elemUpdate = document.getElementById("updateBlog");
 function handleUpdateOpen(e) {
+    editorBTN.style.pointerEvents = "none";
     handleClose();
     elemUpdate.style.display = "block";
     let blogTarget = blogsArr.filter(function (el) {
@@ -217,6 +221,7 @@ function handleUpdateOpen(e) {
 }
 function handleUpdateClose() {
     elemUpdate.style.display = "none";
+    editorBTN.style.pointerEvents = "auto";
 }
 function handleUpdateBlog(e){
     updatedTitle = document.getElementById("mytitleEdited").value;
